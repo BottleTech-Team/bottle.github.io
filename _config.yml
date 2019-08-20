@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Z . A . Y . F . E . N 
+title: BottleTech.Team 
 subtitle: CODING...
 description: For Better Life...
 keywords:
-author: zayfen
+author: BottleTech.Team
 language: zh-CN
 timezone: Asia/Shanghai 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://zayfen.com
+url: https://haina.xgeeklab.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -89,7 +89,7 @@ menu:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:zayfen/zayfen.github.io.git
+  repo: git@github.com:BottleTech-Team/bottle.github.io.git 
   branch: master
 
 algolia:
