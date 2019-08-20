@@ -1,10 +1,21 @@
 .site-author-image {
-  display: block;
+  show();
   margin: 0 auto;
   padding: $site-author-image-padding;
   max-width: $site-author-image-width;
   height: $site-author-image-height;
   border: $site-author-image-border-width solid $site-author-image-border-color;
+  circle() if hexo-config('avatar.rounded');
+}
+
+if hexo-config('avatar.rotated') {
+  .site-author-image {
+    transition: transform 1.0s ease-out;
+  }
+
+  .site-author-image:hover {
+    transform: rotateZ(360deg);
+  }
 }
 
 .site-author-name {
