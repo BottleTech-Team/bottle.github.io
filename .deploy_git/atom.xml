@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://haina.xgeeklab.com/"/>
-  <updated>2019-08-22T06:53:35.810Z</updated>
+  <updated>2019-08-22T06:57:08.959Z</updated>
   <id>https://haina.xgeeklab.com/</id>
   
   <author>
@@ -20,8 +20,8 @@
     <title>如何用Chrome调试微信web页面</title>
     <link href="https://haina.xgeeklab.com/2019/08/22/wechat-web-debug/"/>
     <id>https://haina.xgeeklab.com/2019/08/22/wechat-web-debug/</id>
-    <published>2019-08-22T06:53:35.818Z</published>
-    <updated>2019-08-22T06:53:35.810Z</updated>
+    <published>2019-08-22T06:57:08.963Z</published>
+    <updated>2019-08-22T06:57:08.959Z</updated>
     
     <content type="html"><![CDATA[<h2 id="如何用Chrome调试微信web页面"><a href="#如何用Chrome调试微信web页面" class="headerlink" title="如何用Chrome调试微信web页面"></a>如何用Chrome调试微信web页面</h2><blockquote><p>微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，<br>但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。</p></blockquote><h3 id="步骤（此处仅仅在android手机上做了测试）"><a href="#步骤（此处仅仅在android手机上做了测试）" class="headerlink" title="步骤（此处仅仅在android手机上做了测试）"></a>步骤（此处仅仅在android手机上做了测试）</h3><h4 id="1-打开android手机的开发者模式-和-usb调试"><a href="#1-打开android手机的开发者模式-和-usb调试" class="headerlink" title="1. 打开android手机的开发者模式 和 usb调试"></a>1. 打开android手机的开发者模式 和 usb调试</h4><blockquote><p>每个手机打开方式都不一样，请自行搜索解决方案</p></blockquote><h4 id="2-打开chrome的-Remote-Devices"><a href="#2-打开chrome的-Remote-Devices" class="headerlink" title="2. 打开chrome的 Remote Devices"></a>2. 打开chrome的 <code>Remote Devices</code></h4><p><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456083/img/xfln0smfyyrmta2cgfbg.png" alt></p><h4 id="3-手机连接电脑"><a href="#3-手机连接电脑" class="headerlink" title="3. 手机连接电脑"></a>3. 手机连接电脑</h4><blockquote><p>手机连接电脑的时候，会弹出一个usb授权提示弹窗，点解<code>确定</code></p></blockquote><h4 id="4-在Chrome上的-Remote-Devices上查看链接的手机情况"><a href="#4-在Chrome上的-Remote-Devices上查看链接的手机情况" class="headerlink" title="4. 在Chrome上的 Remote Devices上查看链接的手机情况"></a>4. 在Chrome上的 <code>Remote Devices</code>上查看链接的手机情况</h4><p><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456090/img/sebny1fdphicnkfmisgx.png" alt></p><h4 id="5-调试手机上的页面"><a href="#5-调试手机上的页面" class="headerlink" title="5. 调试手机上的页面"></a>5. 调试手机上的页面</h4><blockquote><p>点击要调试的页面的右边的 <code>Inspect</code>按钮，就可以打开进行调试了。 <strong>但是这个时候我们发现仅仅只能看到浏览器的页面，没有看到微信的web页面</strong></p></blockquote><h4 id="6-手机微信打开-http-debugx5-qq-com-并勾选-打开TBS内核Inspector调试功能"><a href="#6-手机微信打开-http-debugx5-qq-com-并勾选-打开TBS内核Inspector调试功能" class="headerlink" title="6. 手机微信打开 http://debugx5.qq.com, 并勾选 打开TBS内核Inspector调试功能"></a>6. 手机微信打开 <a href="http://debugx5.qq.com" target="_blank" rel="noopener">http://debugx5.qq.com</a>, 并勾选 <code>打开TBS内核Inspector调试功能</code></h4><p><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456094/img/xa7exyod0yyavarj1w7f.jpg" alt></p><blockquote><p>勾选后会提示重启，点击确定就行</p></blockquote><h4 id="7-微信上打开要调试的web-页面，就可以在chrome中看到了"><a href="#7-微信上打开要调试的web-页面，就可以在chrome中看到了" class="headerlink" title="7. 微信上打开要调试的web 页面，就可以在chrome中看到了"></a>7. 微信上打开要调试的web 页面，就可以在chrome中看到了</h4><p><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456098/img/nz3ismpqljduymsinjq0.jpg" alt><br><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456100/img/fo5afmbyo4uvj7qgrgop.png" alt></p><h4 id="8-点击chrome中-inspect按钮及可以开始调试了"><a href="#8-点击chrome中-inspect按钮及可以开始调试了" class="headerlink" title="8. 点击chrome中 inspect按钮及可以开始调试了"></a>8. 点击chrome中 <code>inspect</code>按钮及可以开始调试了</h4><p><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456105/img/irjrryrjdx9eq0rqg7pb.png" alt></p>]]></content>
     
@@ -37,7 +37,11 @@
       <category term="web" scheme="https://haina.xgeeklab.com/categories/web/"/>
     
     
-      <category term="wechat, chrome, debug" scheme="https://haina.xgeeklab.com/tags/wechat-chrome-debug/"/>
+      <category term="wechat" scheme="https://haina.xgeeklab.com/tags/wechat/"/>
+    
+      <category term="chrome" scheme="https://haina.xgeeklab.com/tags/chrome/"/>
+    
+      <category term="debug" scheme="https://haina.xgeeklab.com/tags/debug/"/>
     
   </entry>
   
