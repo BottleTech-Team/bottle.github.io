@@ -66,18 +66,27 @@
   };
 </script>
 
-  <meta name="description" content="For Better Life...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BottleTech.Team">
-<meta property="og:url" content="https://haina.xgeeklab.com/index.html">
+  <meta name="description" content="如何用Chrome调试微信web页面 微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。  步骤（此处仅仅在android手机上做了测试）1. 打开android手机的开发者模式 和 usb调试 每个手机打开方">
+<meta name="keywords" content="wechat chrome debug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何用Chrome调试微信web页面">
+<meta property="og:url" content="https://haina.xgeeklab.com/2019/08/22/wechat-web-debug/index.html">
 <meta property="og:site_name" content="BottleTech.Team">
-<meta property="og:description" content="For Better Life...">
+<meta property="og:description" content="如何用Chrome调试微信web页面 微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。  步骤（此处仅仅在android手机上做了测试）1. 打开android手机的开发者模式 和 usb调试 每个手机打开方">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1566456083/img/xfln0smfyyrmta2cgfbg.png">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1566456090/img/sebny1fdphicnkfmisgx.png">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1566456094/img/xa7exyod0yyavarj1w7f.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1566456098/img/nz3ismpqljduymsinjq0.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1566456100/img/fo5afmbyo4uvj7qgrgop.png">
+<meta property="og:image" content="https://res.cloudinary.com/zayfen/image/upload/v1566456105/img/irjrryrjdx9eq0rqg7pb.png">
+<meta property="og:updated_time" content="2019-08-22T06:51:45.434Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BottleTech.Team">
-<meta name="twitter:description" content="For Better Life...">
+<meta name="twitter:title" content="如何用Chrome调试微信web页面">
+<meta name="twitter:description" content="如何用Chrome调试微信web页面 微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。  步骤（此处仅仅在android手机上做了测试）1. 打开android手机的开发者模式 和 usb调试 每个手机打开方">
+<meta name="twitter:image" content="https://res.cloudinary.com/zayfen/image/upload/v1566456083/img/xfln0smfyyrmta2cgfbg.png">
   <link rel="alternate" href="/atom.xml" title="BottleTech.Team" type="application/atom+xml">
-  <link rel="canonical" href="https://haina.xgeeklab.com/">
+  <link rel="canonical" href="https://haina.xgeeklab.com/2019/08/22/wechat-web-debug/">
 
 
 <script id="page.configurations">
@@ -86,7 +95,7 @@
   };
 </script>
 
-  <title>BottleTech.Team</title>
+  <title>如何用Chrome调试微信web页面 | BottleTech.Team</title>
   
 
 
@@ -125,7 +134,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  <div class="container sidebar-position-left page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -160,7 +169,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
       
     
 
@@ -270,8 +279,10 @@
 
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-      
+
+  <div id="posts" class="posts-expand">
+    
+    <div class="reading-progress-bar"></div>
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -292,10 +303,8 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/22/wechat-web-debug/" class="post-title-link" itemprop="url">如何用Chrome调试微信web页面</a>
+          <h2 class="post-title" itemprop="name headline">如何用Chrome调试微信web页面
+
               
             
           </h2>
@@ -348,8 +357,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h2 id="如何用Chrome调试微信web页面"><a href="#如何用Chrome调试微信web页面" class="headerlink" title="如何用Chrome调试微信web页面"></a>如何用Chrome调试微信web页面</h2><blockquote>
+        <h2 id="如何用Chrome调试微信web页面"><a href="#如何用Chrome调试微信web页面" class="headerlink" title="如何用Chrome调试微信web页面"></a>如何用Chrome调试微信web页面</h2><blockquote>
 <p>微信调试有官方的微信开发者工具，这个工具很方便，但是有一个不方便就是调试公众号页面的时候，需要公众号给你授予开发者权限，<br>但是有的时候，你仅仅只是想调试页面的样式和一些dom结构，这个时候直接用chrome调试微信web页面就显得特别方便了。</p>
 </blockquote>
 <h3 id="步骤（此处仅仅在android手机上做了测试）"><a href="#步骤（此处仅仅在android手机上做了测试）" class="headerlink" title="步骤（此处仅仅在android手机上做了测试）"></a>步骤（此处仅仅在android手机上做了测试）</h3><h4 id="1-打开android手机的开发者模式-和-usb调试"><a href="#1-打开android手机的开发者模式-和-usb调试" class="headerlink" title="1. 打开android手机的开发者模式 和 usb调试"></a>1. 打开android手机的开发者模式 和 usb调试</h4><blockquote>
@@ -370,18 +378,44 @@
 <h4 id="7-微信上打开要调试的web-页面，就可以在chrome中看到了"><a href="#7-微信上打开要调试的web-页面，就可以在chrome中看到了" class="headerlink" title="7. 微信上打开要调试的web 页面，就可以在chrome中看到了"></a>7. 微信上打开要调试的web 页面，就可以在chrome中看到了</h4><p><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456098/img/nz3ismpqljduymsinjq0.jpg" alt><br><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456100/img/fo5afmbyo4uvj7qgrgop.png" alt></p>
 <h4 id="8-点击chrome中-inspect按钮及可以开始调试了"><a href="#8-点击chrome中-inspect按钮及可以开始调试了" class="headerlink" title="8. 点击chrome中 inspect按钮及可以开始调试了"></a>8. 点击chrome中 <code>inspect</code>按钮及可以开始调试了</h4><p><img src="https://res.cloudinary.com/zayfen/image/upload/v1566456105/img/irjrryrjdx9eq0rqg7pb.png" alt></p>
 
-          
-        
-      
     </div>
 
     
     
     
     
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="BottleTech.Team 微信支付">
+        <p>微信支付</p>
+      </div>
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="BottleTech.Team 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+      </div>
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
+          
+        
+        <div class="post-tags">
+            <a href="/tags/wechat-chrome-debug/" rel="tag"><i class="fa fa-tag"></i> wechat chrome debug</a>
+          
+        </div>
     </footer>
   </div>
   
@@ -389,14 +423,21 @@
   
   </article>
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
 
         </div>
           
@@ -411,8 +452,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -474,6 +524,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何用Chrome调试微信web页面"><span class="nav-number">1.</span> <span class="nav-text">如何用Chrome调试微信web页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤（此处仅仅在android手机上做了测试）"><span class="nav-number">1.1.</span> <span class="nav-text">步骤（此处仅仅在android手机上做了测试）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-打开android手机的开发者模式-和-usb调试"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 打开android手机的开发者模式 和 usb调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-打开chrome的-Remote-Devices"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 打开chrome的 Remote Devices</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-手机连接电脑"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 手机连接电脑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-在Chrome上的-Remote-Devices上查看链接的手机情况"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 在Chrome上的 Remote Devices上查看链接的手机情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-调试手机上的页面"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 调试手机上的页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-手机微信打开-http-debugx5-qq-com-并勾选-打开TBS内核Inspector调试功能"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 手机微信打开 http://debugx5.qq.com, 并勾选 打开TBS内核Inspector调试功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-微信上打开要调试的web-页面，就可以在chrome中看到了"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 微信上打开要调试的web 页面，就可以在chrome中看到了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-点击chrome中-inspect按钮及可以开始调试了"><span class="nav-number">1.1.8.</span> <span class="nav-text">8. 点击chrome中 inspect按钮及可以开始调试了</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
@@ -545,6 +612,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -571,32 +642,9 @@
 
 
   
-    
-      
-    
-  
 
 
     
-  
-    
-      
-    
-  
-    <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-    <script>
-      
-        window.addEventListener('load', () => {
-      
-        quicklink({
-          timeout: 3000,
-          priority: true,
-          ignores: [uri => uri.includes('#'),uri => uri == 'https://haina.xgeeklab.com/',]
-        });
-      
-        });
-      
-    </script>
   
 
 
@@ -604,7 +652,7 @@
   
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js"></script>
   <script>
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
@@ -662,6 +710,33 @@ if ($('body').find('pre.mermaid').length) {
 
 
     
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+  
+
+
+<script>
+  function initialDsq() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'K9Hdu5DnJ80nAXufpJLVlXZYbkWoLAXAraKBjmBqlMsftBv6IoPliPv3iUmVKRDd',
+      shortname: 'zayfen-com',
+      url: "https://haina.xgeeklab.com/2019/08/22/wechat-web-debug/",
+      identifier: "2019/08/22/wechat-web-debug/",
+      title: '如何用Chrome调试微信web页面',
+    });
+  }
+
+  function loadDsqJS() {
+    var d = document, s = d.createElement('script');
+    s.src = '//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js';
+    s.onload = initialDsq;
+    (d.head || d.body).appendChild(s);
+  }
+  
+  window.addEventListener('load', loadDsqJS, false);
+</script>
 
 
 </body>
