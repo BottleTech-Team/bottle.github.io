@@ -1,6 +1,6 @@
 ---
 title: 如何用Chrome调试微信web页面
-tag: wechat chrome debug 
+tag: wechat, chrome, debug 
 category: web
 ---
 
