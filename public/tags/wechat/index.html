@@ -591,6 +591,28 @@ if ($('body').find('pre.mermaid').length) {
 
 
     
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'kqEq8lj0zlk0DI2E7OLRpVk5-gzGzoHsz',
+    appKey: '3OKBubJM6Qu3ETrAgNgMaz92',
+    placeholder: '你的评语...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
 
 
 </body>

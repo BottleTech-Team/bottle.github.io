@@ -342,6 +342,24 @@
             </span>
           
 
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2019/08/22/wechat-web-debug/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/22/wechat-web-debug/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
           <br/>
 
         </div>
@@ -429,13 +447,7 @@
           </div>
           
     
-    
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
+    <div class="comments" id="comments"></div>
   
 
 
@@ -714,32 +726,27 @@ if ($('body').find('pre.mermaid').length) {
 
 
     
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-  
-
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 <script>
-  function initialDsq() {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'K9Hdu5DnJ80nAXufpJLVlXZYbkWoLAXAraKBjmBqlMsftBv6IoPliPv3iUmVKRDd',
-      shortname: 'zayfen-com',
-      url: "https://haina.xgeeklab.com/2019/08/22/wechat-web-debug/",
-      identifier: "2019/08/22/wechat-web-debug/",
-      title: '如何用Chrome调试微信web页面',
-    });
-  }
-
-  function loadDsqJS() {
-    var d = document, s = d.createElement('script');
-    s.src = '//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js';
-    s.onload = initialDsq;
-    (d.head || d.body).appendChild(s);
-  }
-  
-  window.addEventListener('load', loadDsqJS, false);
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'kqEq8lj0zlk0DI2E7OLRpVk5-gzGzoHsz',
+    appKey: '3OKBubJM6Qu3ETrAgNgMaz92',
+    placeholder: '你的评语...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
 </script>
 
 

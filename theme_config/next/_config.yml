@@ -614,7 +614,7 @@ disqus:
 # Alternative Disqus - Render comment component using Disqus API.
 # Demo: https://suka.js.org/DisqusJS/
 disqusjs:
-  enable: true 
+  enable: false 
   # API Endpoint of Disqus API (https://disqus.com/api/).
   # Leave api empty if you are able to connect to Disqus API.
   # Otherwise you need a reverse proxy for Disqus API.
@@ -634,12 +634,12 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # More info available at https://valine.js.org
 valine:
-  enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version
-  appid: # Your leancloud application appid
-  appkey: # Your leancloud application appkey
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version
+  appid: kqEq8lj0zlk0DI2E7OLRpVk5-gzGzoHsz 
+  appkey: 3OKBubJM6Qu3ETrAgNgMaz92 
   notify: false # Mail notifier. See: https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: Just go go # Comment box placeholder
+  placeholder: 你的评语... 
   avatar: mm # Gravatar style
   guest_info: nick,mail,link # Custom comment header
   pageSize: 10 # Pagination size

@@ -360,13 +360,7 @@
           </div>
           
     
-    
-  <div class="comments" id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-    </div>
-  </div>
-  
+    <div class="comments" id="comments"></div>
   
 
 
@@ -619,32 +613,27 @@ if ($('body').find('pre.mermaid').length) {
 
 
     
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
-  
-
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 <script>
-  function initialDsq() {
-    window.dsqjs = new DisqusJS({
-      api: '' || 'https://disqus.com/api/',
-      apikey: 'K9Hdu5DnJ80nAXufpJLVlXZYbkWoLAXAraKBjmBqlMsftBv6IoPliPv3iUmVKRDd',
-      shortname: 'zayfen-com',
-      url: "https://haina.xgeeklab.com/tags/index.html",
-      identifier: "tags/index.html",
-      title: 'TAGS',
-    });
-  }
-
-  function loadDsqJS() {
-    var d = document, s = d.createElement('script');
-    s.src = '//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js';
-    s.onload = initialDsq;
-    (d.head || d.body).appendChild(s);
-  }
-  
-  window.addEventListener('load', loadDsqJS, false);
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'kqEq8lj0zlk0DI2E7OLRpVk5-gzGzoHsz',
+    appKey: '3OKBubJM6Qu3ETrAgNgMaz92',
+    placeholder: '你的评语...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
 </script>
 
 
