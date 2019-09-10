@@ -75,7 +75,7 @@ B                {%- endif %}
 		<span class="post-meta-item-icon">
 			<i class="fa fa-user-o"></i>
 		</span>
-		<span class="post-meta-item-text">{{ __('post.author') }}</span>
+		<span class="post-meta-item-text">{{ post.author }}</span>
 	</span>
 
           {%- if theme.post_meta.created_at %}
