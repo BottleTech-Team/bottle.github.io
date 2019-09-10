@@ -278,6 +278,338 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://haina.xgeeklab.com/2019/09/10/vue-asyn-component/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BottleTech.Team">
+      <meta itemprop="description" content="For Better Life...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BottleTech.Team">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/10/vue-asyn-component/" class="post-title-link" itemprop="url">Vue异步组件详解</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-10 19:11:14 / 修改时间：19:13:55" itemprop="dateCreated datePublished" datetime="2019-09-10T19:11:14+08:00">2019-09-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2019/09/10/vue-asyn-component/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/10/vue-asyn-component/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>  在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。为了简化，Vue 允许你以一个工厂函数的方式定义你的组件，这个工厂函数会异步解析你的组件定义。Vue 只有在这个组件需要被渲染的时候才会触发该工厂函数，且会把结果缓存起来供未来重渲染。</p>
+<p>  异步组件的一个典型应用就是在配合<code>webpack</code>代码拆分时定义的<code>Vue</code>路由组件。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   name: <span class="string">'meetingList'</span>,</span><br><span class="line">   path: <span class="string">'list'</span>,</span><br><span class="line">   component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'@/views/meeting/list.vue'</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码<code>component</code>就被定义为函数返回一个<code>promise</code>，实质上就是一个异步组件。</p>
+<h1 id="异步组件的解析"><a href="#异步组件的解析" class="headerlink" title="异步组件的解析"></a>异步组件的解析</h1><p>我们定义一个<code>AsyncComponent</code>的异步组件, 这个组件只有被访问到时才会加载</p>
+<p>~~html</p>
+<div>
+    <asynccomponent>
+</asynccomponent></div>
+~~
+
+<p><del>js<br>  components: {<br>    AsyncComponent: () =&gt; import(‘./components/test-async-component/index.vue’),<br>  }<br>~</del></p>
+<p>以上组件在<code>rednder</code>时组件时会调用<code>createElement</code>创建<code>vnode，</code>对于组件<code>createElement</code>又会调用<code>createComponent</code>在<code>createComponent</code>内初始异步组件的代码如下。</p>
+<p>~~js</p>
+<p>export function createComponent (<br>  Ctor: Class<component> | Function | Object | void,<br>  data: ?VNodeData,<br>  context: Component,<br>  children: ?Array<vnode>,<br>  tag?: string<br>): VNode | Array<vnode> | void {<br>  if (isUndef(Ctor)) {<br>    return<br>  }<br>  // Vue<br>  const baseCtor = context.$options._base</vnode></vnode></component></p>
+<p>  // plain options object: turn it into a constructor<br>  // 对于异步组件传过来的是函数，所以不会执行Vue.extend<br>  if (isObject(Ctor)) {<br>    // 调用Vue.extend<br>    Ctor = baseCtor.extend(Ctor)<br>  }</p>
+<p>  // async component<br>  // 异步组件<br>  let asyncFactory<br>  // 异步组件没经过 Vue.extend所以不存在Ctor.cid<br>  if (isUndef(Ctor.cid)) {<br>    asyncFactory = Ctor<br>    Ctor = resolveAsyncComponent(asyncFactory, baseCtor)<br>    if (Ctor === undefined) {<br>      // 异步组件未加载完毕，且没有loading组件创建占位节点<br>      // return a placeholder node for async component, which is rendered<br>      // as a comment node but preserves all the raw information for the node.<br>      // the information will be used for async server-rendering and hydration.<br>      return createAsyncPlaceholder(<br>        asyncFactory,<br>        data,<br>        context,<br>        children,<br>        tag<br>      )<br>    }<br>  }</p>
+<p>  return vnode<br>}</p>
+<p>~~</p>
+<p>因为此时传入<code>Ctor</code>是函数所以没有调用<code>Vue.extend</code>所以<code>Ctor</code>上不存在<code>cid</code>属性，所以会调用<code>resolveAsyncComponent</code>解析异步组件。</p>
+<p>~~js<br>export function resolveAsyncComponent (<br>  factory: Function,<br>  baseCtor: Class<component><br>): Class<component> | void {<br>  if (isTrue(factory.error) &amp;&amp; isDef(factory.errorComp)) {<br>      // 如果当前出错，返回错误组件<br>    return factory.errorComp<br>  }</component></component></p>
+<p>  if (isDef(factory.resolved)) {<br>    // 如果已经被缓存了直接返回<br>    return factory.resolved<br>  }<br>  // 当前渲染Vue实例<br>  const owner = currentRenderingInstance<br>  if (owner &amp;&amp; isDef(factory.owners) &amp;&amp; factory.owners.indexOf(owner) === -1) {<br>    // already pending<br>    factory.owners.push(owner)<br>  }</p>
+<p>  if (isTrue(factory.loading) &amp;&amp; isDef(factory.loadingComp)) {<br>      // 返回loadding组件<br>    return factory.loadingComp<br>  }</p>
+<p>  if (owner &amp;&amp; !isDef(factory.owners)) {<br>    const owners = factory.owners = [owner]<br>    let sync = true<br>    let timerLoading = null<br>    let timerTimeout = null</p>
+<pre><code>;(owner: any).$on(&apos;hook:destroyed&apos;, () =&gt; remove(owners, owner))
+// 在组件发生变化时触发强制更新
+const forceRender = (renderCompleted: boolean) =&gt; {
+  for (let i = 0, l = owners.length; i &lt; l; i++) {
+    (owners[i]: any).$forceUpdate()
+  }
+
+  if (renderCompleted) {
+    owners.length = 0
+    // 清除loading的计时器
+    if (timerLoading !== null) {
+      clearTimeout(timerLoading)
+      timerLoading = null
+    }
+    // 清除timeout计时器
+    if (timerTimeout !== null) {
+      clearTimeout(timerTimeout)
+      timerTimeout = null
+    }
+  }
+}
+// once确保传入的函数只执行一次，因为第一次执行后会缓存执行结果，所以函数只需要执行一次
+const resolve = once((res: Object | Class&lt;Component&gt;) =&gt; {
+  // cache resolved
+  factory.resolved = ensureCtor(res, baseCtor)
+  // invoke callbacks only if this is not a synchronous resolve
+  // (async resolves are shimmed as synchronous during SSR)
+  if (!sync) {
+    // 组件发生变化触发强制更新
+    forceRender(true)
+  } else {
+    owners.length = 0
+  }
+})
+// reject函数出错时调用
+const reject = once(reason =&gt; {
+  process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; warn(
+    `Failed to resolve async component: ${String(factory)}` +
+    (reason ? `\nReason: ${reason}` : &apos;&apos;)
+  )
+  if (isDef(factory.errorComp)) {
+    factory.error = true
+    // 发生错误需要显示错误组件，强制更新
+    forceRender(true)
+  }
+})
+// 执行异步组件函数
+// 对于普通的函数异步组件，在这一步就会返回结果
+const res = factory(resolve, reject)
+// 如果返回的是Promise
+if (isObject(res)) {
+  if (isPromise(res)) {
+    // () =&gt; Promise
+    if (isUndef(factory.resolved)) {
+      // 在promise的成功回调内传入resolve， 和reject
+      res.then(resolve, reject)
+    }
+  } else if (isPromise(res.component)) {
+    // 高级的异步组件范湖一个对象，对象包含属性
+    res.component.then(resolve, reject)
+
+    if (isDef(res.error)) {
+      // 缓存错误组件
+      factory.errorComp = ensureCtor(res.error, baseCtor)
+    }
+
+    if (isDef(res.loading)) {
+      // 缓存loading组件
+      factory.loadingComp = ensureCtor(res.loading, baseCtor)
+      if (res.delay === 0) {
+         // 设置延迟0秒
+        factory.loading = true
+      } else {
+         // 默认延迟200秒
+        timerLoading = setTimeout(() =&gt; {
+          timerLoading = null
+          if (isUndef(factory.resolved) &amp;&amp; isUndef(factory.error)) {
+            factory.loading = true
+            forceRender(false)
+          }
+        }, res.delay || 200)
+      }
+    }
+
+    if (isDef(res.timeout)) {
+      // 如果设置了超时时间，超时报错
+      timerTimeout = setTimeout(() =&gt; {
+        timerTimeout = null
+        if (isUndef(factory.resolved)) {
+          reject(
+            process.env.NODE_ENV !== &apos;production&apos;
+              ? `timeout (${res.timeout}ms)`
+              : null
+          )
+        }
+      }, res.timeout)
+    }
+  }
+}
+
+sync = false
+// return in case resolved synchronously
+// 最后判断如果当前正在loading返回loading组件
+// 否则返回异步加载成功的组件
+return factory.loading
+  ? factory.loadingComp
+  : factory.resolved</code></pre><p>  }<br>}<br>function ensureCtor (comp: any, base) {<br>  if (<br>    comp.__esModule ||<br>    (hasSymbol &amp;&amp; comp[Symbol.toStringTag] === ‘Module’)<br>  ) {<br>    comp = comp.default<br>  }<br>  return isObject(comp)<br>    // 调用extend生成构造函数<br>    ? base.extend(comp)<br>    : comp<br>}<br>~~</p>
+<p>以上代码总共有三种情况，分别代表着异步组件的三种写法。</p>
+<h1 id="工厂函数异步组件"><a href="#工厂函数异步组件" class="headerlink" title="工厂函数异步组件"></a>工厂函数异步组件</h1><p>对于普通函数异步组件会直接在<code>resolve</code>函数中缓存异步组件。</p>
+<p><del>js<br>// 工厂函数异组件<br>Vue.component(‘async-example’, function (resolve, reject) {<br>  setTimeout(function () {<br>    // 向 <code>resolve</code> 回调传递组件定义<br>    resolve({<br>      template: ‘<div>I am async!</div>‘<br>    })<br>  }, 1000)<br>// 传入的resolve函数<br>const resolve = once((res: Object | Class<component>) =&gt; {<br>    // cache resolved<br>    factory.resolved = ensureCtor(res, baseCtor)<br>    // invoke callbacks only if this is not a synchronous resolve<br>    // (async resolves are shimmed as synchronous during SSR)<br>    if (!sync) {<br>    // 组件发生变化触发强制更新<br>    forceRender(true)<br>    } else {<br>    owners.length = 0<br>    }<br>})<br>~</component></del></p>
+<h1 id="Promsie组件"><a href="#Promsie组件" class="headerlink" title="Promsie组件"></a>Promsie组件</h1><p>除了工厂函数异步组件也是返回一个Promise</p>
+<p>~~js<br>// 异步组件返回一个Promise<br>Vue.component(<br>  ‘async-webpack-example’,<br>  // 这个 <code>import</code> 函数会返回一个 <code>Promise</code> 对象。<br>  () =&gt; import(‘./my-async-component’)<br>)</p>
+<p>const res = factory(resolve, reject)<br>    // 如果返回的是Promise<br>if (isObject(res)) {<br>    if (isPromise(res)) {<br>        // () =&gt; Promise<br>        if (isUndef(factory.resolved)) {<br>        // 在promise的成功回调内传入resolve， 和reject<br>        res.then(resolve, reject)<br>        }<br>    }<br>}</p>
+<p>~~</p>
+<p>首先判断返回的是不是对象之后判断是否是<code>Promise</code>如果是<code>Promise</code>则传入<code>resolve</code>和<code>reject</code>解析异步组件，这里的<code>resolve</code>和<code>reject</code>就是前文定义的。</p>
+<h1 id="高级异步组件"><a href="#高级异步组件" class="headerlink" title="高级异步组件"></a>高级异步组件</h1><p>除此之外异步组件也可以返回一个对象包含下列选项</p>
+<ul>
+<li><code>component</code> 异步组件</li>
+<li><code>loading</code> 异步组件加载过程中的<code>loading</code>组件</li>
+<li><code>error</code>    加载失败时使用的组件</li>
+<li><code>delay</code> 展示加载时组件的延时时间。默认值是 200 (毫秒)</li>
+<li><code>timeout</code>  如果提供了超时时间且组件加载也超时了，则使用加载失败时使用的组件。默认值是：<code>Infinity</code></li>
+</ul>
+<p>~~js<br>// 异步组件返回一个对象<br>const AsyncComponent = () =&gt; ({<br>  // 需要加载的组件 (应该是一个 <code>Promise</code> 对象)<br>  component: import(‘./MyComponent.vue’),<br>  // 异步组件加载时使用的组件<br>  loading: LoadingComponent,<br>  // 加载失败时使用的组件<br>  error: ErrorComponent,<br>  // 展示加载时组件的延时时间。默认值是 200 (毫秒)<br>  delay: 200,<br>  // 如果提供了超时时间且组件加载也超时了，<br>  // 则使用加载失败时使用的组件。默认值是：<code>Infinity</code><br>  timeout: 3000<br>})<br>// 解析高级异步组件</p>
+<p>  if (isObject(res)) {<br>      if (isPromise(res)) {<br>        // () =&gt; Promise<br>        if (isUndef(factory.resolved)) {<br>          // 在promise的成功回调内传入resolve， 和reject<br>          res.then(resolve, reject)<br>        }<br>      } else if (isPromise(res.component)) {<br>        // 这个分支处理高级异步组件<br>        // 高级的异步组件范湖一个对象，对象包含属性<br>        res.component.then(resolve, reject)</p>
+<pre><code>    if (isDef(res.error)) {
+      // 缓存错误组件
+      factory.errorComp = ensureCtor(res.error, baseCtor)
+    }
+
+    if (isDef(res.loading)) {
+      // 缓存loading组件
+      factory.loadingComp = ensureCtor(res.loading, baseCtor)
+      if (res.delay === 0) {
+         // 设置延迟0秒, 立即显示loading组件
+        factory.loading = true
+      } else {
+         // 默认延迟200秒
+        timerLoading = setTimeout(() =&gt; {
+          timerLoading = null
+          if (isUndef(factory.resolved) &amp;&amp; isUndef(factory.error)) {
+            factory.loading = true
+            forceRender(false)
+          }
+        }, res.delay || 200)
+      }
+    }
+
+    if (isDef(res.timeout)) {
+      // 如果设置了超时时间，超时报错
+      timerTimeout = setTimeout(() =&gt; {
+        timerTimeout = null
+        if (isUndef(factory.resolved)) {
+          reject(
+            process.env.NODE_ENV !== &apos;production&apos;
+              ? `timeout (${res.timeout}ms)`
+              : null
+          )
+        }
+      }, res.timeout)
+    }
+  }
+}</code></pre><p>~~</p>
+<p>由上面我们可以看到一个异步组件有下面几种状态</p>
+<ul>
+<li><code>loading</code> 当前组件正在加载。</li>
+<li><code>error</code> 组件加载失败，如果有设置超时时间超时未加载成功也会把状态置为<code>error</code>。</li>
+<li><code>done</code> 组件加载完成。</li>
+</ul>
+<p>注意每次状态改变都会调用<code>forceRender</code>触发强制更新，因为状态改变显示的组件就会有变化。</p>
+<p>~~js<br>    // 在组件发生变化时触发强制更新<br>    // 就是遍历调用实例的$forceUpdate<br>    const forceRender = (renderCompleted: boolean) =&gt; {<br>      for (let i = 0, l = owners.length; i &lt; l; i++) {<br>        (owners[i]: any).$forceUpdate()<br>      }</p>
+<pre><code>  if (renderCompleted) {
+    owners.length = 0
+    // 清除计时器
+    if (timerLoading !== null) {
+      clearTimeout(timerLoading)
+      timerLoading = null
+    }
+    if (timerTimeout !== null) {
+      clearTimeout(timerTimeout)
+      timerTimeout = null
+    }
+  }
+}</code></pre><p>~~</p>
+<p>这里再次回到<code>createComponet</code>, 当组件还未加载完成，或者设置了<code>delay</code>，则此时<code>resolveAsyncComponent</code>返回了<code>undefined</code>,此时调用<code>createAsyncPlaceholder</code>创建一个占位的<code>vnode</code>.</p>
+<p><del>js<br> if (isUndef(Ctor.cid)) {<br>    asyncFactory = Ctor<br>    Ctor = resolveAsyncComponent(asyncFactory, baseCtor)<br>    if (Ctor === undefined) {<br>      // 异步组件未加载完毕，且没有loading组件创建占位节点<br>      // return a placeholder node for async component, which is rendered<br>      // as a comment node but preserves all the raw information for the node.<br>      // the information will be used for async server-rendering and hydration.<br>      return createAsyncPlaceholder(<br>        asyncFactory,<br>        data,<br>        context,<br>        children,<br>        tag<br>      )<br>    }<br>  }<br>~</del></p>
+<p><del>js<br>export function createAsyncPlaceholder (<br>  factory: Function,<br>  data: ?VNodeData,<br>  context: Component,<br>  children: ?Array<vnode>,<br>  tag: ?string<br>): VNode {<br>  const node = createEmptyVNode()<br>  node.asyncFactory = factory<br>  node.asyncMeta = { data, context, children, tag }<br>  return node<br>}<br>~</vnode></del></p>
+<p>在<code>createAsyncPlaceholder</code>先创建一个空节点，之后将一系列上下文信息缓存在<code>node.asyncMeta</code>中。</p>
+<p>由以上分析看到<code>Vue</code>解析异步组件的过程已经很清楚了, 需要注意的是异步组件每次状态改变都会触发强制更新，因为状态变了组件就变了，通过强制更新执行组件更新。</p>
+<p><img src="https://i.loli.net/2019/09/10/rDnhVolvOusk83t.png" alt="异步组件流程.jpg"></p>
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://haina.xgeeklab.com/2019/08/22/wechat-web-debug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -438,7 +770,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -476,7 +808,15 @@
         
           
         
-        <span class="site-state-item-count">3</span>
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -589,6 +929,8 @@
 
 
   
+    
+      
     
       
     
