@@ -70,14 +70,6 @@ B                {%- endif %}
           {%- set datetime_diff = date_diff or time_diff %}
 
 	
-          {%- show post author   %}
-	  <span class="post-meta-item">
-		<span class="post-meta-item-icon">
-			<i class="fa fa-user-o"></i>
-		</span>
-		<span class="post-meta-item-text">{{ post.author }}</span>
-	</span>
-
           {%- if theme.post_meta.created_at %}
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
