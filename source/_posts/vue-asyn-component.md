@@ -9,20 +9,19 @@ tags:
  - async
  - component
 ---
-
 # 定义
 
   在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。为了简化，Vue 允许你以一个工厂函数的方式定义你的组件，这个工厂函数会异步解析你的组件定义。Vue 只有在这个组件需要被渲染的时候才会触发该工厂函数，且会把结果缓存起来供未来重渲染。
 
   异步组件的一个典型应用就是在配合`webpack`代码拆分时定义的`Vue`路由组件。
 
-  ~~~js
+  ```js
    {
       name: 'meetingList',
       path: 'list',
       component: () => import('@/views/meeting/list.vue')
     }
-  ~~~
+  ```
 
 上面代码`component`就被定义为函数返回一个`promise`，实质上就是一个异步组件。
 
@@ -30,21 +29,21 @@ tags:
 
 我们定义一个`AsyncComponent`的异步组件, 这个组件只有被访问到时才会加载
 
-~~html
+```html
 <div>
     <AsyncComponent />
 </div>
-~~
+```
 
-~~js
+```js
   components: {
     AsyncComponent: () => import('./components/test-async-component/index.vue'),
   }
-~~
+```
 
 以上组件在`rednder`时组件时会调用`createElement`创建`vnode，`对于组件`createElement`又会调用`createComponent`在`createComponent`内初始异步组件的代码如下。
 
-~~js
+```js
 
 export function createComponent (
   Ctor: Class<Component> | Function | Object | void,
@@ -92,11 +91,11 @@ export function createComponent (
   return vnode
 }
 
-~~
+```
 
 因为此时传入`Ctor`是函数所以没有调用`Vue.extend`所以`Ctor`上不存在`cid`属性，所以会调用`resolveAsyncComponent`解析异步组件。
 
-~~js
+```js
 export function resolveAsyncComponent (
   factory: Function,
   baseCtor: Class<Component>
@@ -249,7 +248,7 @@ function ensureCtor (comp: any, base) {
     ? base.extend(comp)
     : comp
 }
-~~
+```
 
 以上代码总共有三种情况，分别代表着异步组件的三种写法。
 
@@ -257,7 +256,7 @@ function ensureCtor (comp: any, base) {
 
 对于普通函数异步组件会直接在`resolve`函数中缓存异步组件。
 
-~~js
+```js
 // 工厂函数异组件
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
@@ -279,13 +278,13 @@ const resolve = once((res: Object | Class<Component>) => {
     owners.length = 0
     }
 })
-~~
+```
 
 # Promsie组件
 
 除了工厂函数异步组件也是返回一个Promise
 
-~~js
+```js
 // 异步组件返回一个Promise
 Vue.component(
   'async-webpack-example',
@@ -305,7 +304,7 @@ if (isObject(res)) {
     }
 }
 
-~~
+```
 
 首先判断返回的是不是对象之后判断是否是`Promise`如果是`Promise`则传入`resolve`和`reject`解析异步组件，这里的`resolve`和`reject`就是前文定义的。
 
@@ -320,7 +319,7 @@ if (isObject(res)) {
 *  `delay` 展示加载时组件的延时时间。默认值是 200 (毫秒)
 * `timeout`  如果提供了超时时间且组件加载也超时了，则使用加载失败时使用的组件。默认值是：`Infinity`
 
-~~js
+```js
 // 异步组件返回一个对象
 const AsyncComponent = () => ({
   // 需要加载的组件 (应该是一个 `Promise` 对象)
@@ -387,7 +386,7 @@ const AsyncComponent = () => ({
         }
       }
     }
-~~
+```
 
 由上面我们可以看到一个异步组件有下面几种状态
 
@@ -397,7 +396,7 @@ const AsyncComponent = () => ({
 
 注意每次状态改变都会调用`forceRender`触发强制更新，因为状态改变显示的组件就会有变化。
 
-~~js
+```js
     // 在组件发生变化时触发强制更新
     // 就是遍历调用实例的$forceUpdate
     const forceRender = (renderCompleted: boolean) => {
@@ -419,11 +418,11 @@ const AsyncComponent = () => ({
       }
     }
  
-~~
+```
 
 这里再次回到`createComponet`, 当组件还未加载完成，或者设置了`delay`，则此时`resolveAsyncComponent`返回了`undefined`,此时调用`createAsyncPlaceholder`创建一个占位的`vnode`.
 
-~~js
+```js
  if (isUndef(Ctor.cid)) {
     asyncFactory = Ctor
     Ctor = resolveAsyncComponent(asyncFactory, baseCtor)
@@ -441,9 +440,9 @@ const AsyncComponent = () => ({
       )
     }
   }
-~~
+```
 
-~~js
+```js
 export function createAsyncPlaceholder (
   factory: Function,
   data: ?VNodeData,
@@ -456,7 +455,7 @@ export function createAsyncPlaceholder (
   node.asyncMeta = { data, context, children, tag }
   return node
 }
-~~
+```
 
 在`createAsyncPlaceholder`先创建一个空节点，之后将一系列上下文信息缓存在`node.asyncMeta`中。
 
