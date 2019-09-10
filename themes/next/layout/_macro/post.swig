@@ -52,7 +52,7 @@
                   <span class="post-sticky-flag" title="{{ __('post.sticky') }}">
                     <i class="fa fa-thumb-tack"></i>
                   </span>
-                {%- endif %}
+B                {%- endif %}
                 {# Need to delete maybe? #}
                 {{ next_url(post.path, post.title | default(__('post.untitled')), {class: 'post-title-link', itemprop: 'url' }) }}
               {% else -%}
@@ -68,6 +68,15 @@
           {%- set date_diff = date(post.date) != date(post.updated) %}
           {%- set time_diff = time(post.date) != time(post.updated) %}
           {%- set datetime_diff = date_diff or time_diff %}
+
+	
+          {%- show post author   %}
+	  <span class="post-meta-item">
+		<span class="post-meta-item-icon">
+			<i class="fa fa-user-o"></i>
+		</span>
+		<span class="post-meta-item-text">{{ __('post.author') }}</span>
+	</span>
 
           {%- if theme.post_meta.created_at %}
             <span class="post-meta-item">
