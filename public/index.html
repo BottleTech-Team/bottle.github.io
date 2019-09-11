@@ -278,6 +278,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://haina.xgeeklab.com/2019/09/11/git-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BottleTech.Team">
+      <meta itemprop="description" content="For Better Life...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BottleTech.Team">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/11/git-learning/" class="post-title-link" itemprop="url">Git常用操作总结</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-11 03:10:12 / 修改时间：11:34:59" itemprop="dateCreated datePublished" datetime="2019-09-11T03:10:12+08:00">2019-09-11</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/2019/09/11/git-learning/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/11/git-learning/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <blockquote>
+<p>作者： 张云峰</p>
+</blockquote>
+<p><img src="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png" alt="https://res.cloudinary.com/zayfen/image/upload/v1568171685/img/l8yeyxvtfw6kplg1ci67.png"></p>
+<h3 id="漂亮打印git-log"><a href="#漂亮打印git-log" class="headerlink" title="漂亮打印git log"></a>漂亮打印git log</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --pretty=format:<span class="string">'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'</span> --abbrev-commit --date=relative</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加修改或者新文件到待commit队列"><a href="#添加修改或者新文件到待commit队列" class="headerlink" title="添加修改或者新文件到待commit队列"></a>添加修改或者新文件到待commit队列</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### add 的文件是支持正则匹配的</span></span><br><span class="line">git add &lt;file(s)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### add all changes to commiter queue</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看某个commit的修改内容</span></span><br><span class="line">git show &lt;commit-id&gt;</span><br><span class="line">git diff &lt;commit-id&gt;^!</span><br><span class="line"><span class="comment">##### e.g. git show d34ff657f5   git diff d34ff657f5^!</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="提交已添加的文件到本地仓库并创建一个新的版本"><a href="#提交已添加的文件到本地仓库并创建一个新的版本" class="headerlink" title="提交已添加的文件到本地仓库并创建一个新的版本"></a>提交已添加的文件到本地仓库并创建一个新的版本</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"commit message"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### also can combine git add &amp; git commit in one command</span></span><br><span class="line">git commit -m <span class="string">"commit message"</span> -a</span><br></pre></td></tr></table></figure>
+
+<h3 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### origin 是仓库名（默认就是origin），branch_name 是分支名</span></span><br><span class="line">git push origin &lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><h3 id="创建一个仓库"><a href="#创建一个仓库" class="headerlink" title="创建一个仓库"></a>创建一个仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### from existed repo </span></span><br><span class="line">git <span class="built_in">clone</span> &lt;repo-url&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### create a new local repo</span></span><br><span class="line">git init [&lt;<span class="built_in">local</span>-directory&gt;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 查看本地分支</span></span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看本地和远端的分支</span></span><br><span class="line">git branch -va</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看本地分支和远程分支的对应关系</span></span><br><span class="line">git remote show &lt;repo-name&gt; <span class="comment">## git remote show origin</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 仅仅创建一个新分支在本地</span></span><br><span class="line">git checkout &lt;new-branch-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 创建一个分支，并且将工作区切换到新创建的分支</span></span><br><span class="line">git checkout -b &lt;new-branch-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 拉取远程分支到本地，并切换分支</span></span><br><span class="line">git checkout -b &lt;<span class="built_in">local</span>-branch-name&gt; &lt;repo-name&gt;/&lt;remote-branch-name&gt;</span><br><span class="line"><span class="comment">#### e.g.: git checkout -b test origin/test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### 把远程分支拉取到本地，不切换分支 (--tranck 选项现在是默认的了)</span></span><br><span class="line">git branch &lt;<span class="built_in">local</span>-branch-name&gt; &lt;repo-name&gt;/&lt;remote-branch-name&gt; [--track]</span><br><span class="line"><span class="comment">#### e.g.: git branch test origin/test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="将本地分支推送到远程仓库"><a href="#将本地分支推送到远程仓库" class="headerlink" title="将本地分支推送到远程仓库"></a>将本地分支推送到远程仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 远程分支不存在的情况</span></span><br><span class="line"><span class="comment">### remote-name: 通常是 origin； local-branch-name: 本地分支名； remote-branch-name: 要创建的远程分支名</span></span><br><span class="line"> git push &lt;remote-name&gt; &lt;<span class="built_in">local</span>-branch-name&gt;:&lt;remote-branch-name&gt;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">## 远程分支存在的情况（但是没有关联）</span></span><br><span class="line"> <span class="comment">### 首先关联本地分支和远程分支</span></span><br><span class="line"> git push -u &lt;remote-name&gt; &lt;branch-name&gt;</span><br><span class="line"> <span class="comment">#### or</span></span><br><span class="line"> git branch --<span class="built_in">set</span>-upstream-to=&lt;remote-name&gt;/&lt;remote-branch&gt; &lt;<span class="built_in">local</span>-branch&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新分支"><a href="#更新分支" class="headerlink" title="更新分支"></a>更新分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 跟新本地分支</span></span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"><span class="comment">### 更新远程分支信息</span></span><br><span class="line">git remote update</span><br><span class="line"></span><br><span class="line"><span class="comment">### 使用远程的代码强制更新本地的代码 （强制本地代码和线上的一致）v1.0</span></span><br><span class="line">git checkout .</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"><span class="comment">### 使用远程的分支代码强制更新本地的代码（强制本地代码和线上的一致）v2.0</span></span><br><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tag"><a href="#Tag" class="headerlink" title="Tag"></a>Tag</h2><h3 id="创建tag"><a href="#创建tag" class="headerlink" title="创建tag"></a>创建tag</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -a &lt;tag-name&gt; -m &lt;tag-message&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除tag"><a href="#删除tag" class="headerlink" title="删除tag"></a>删除tag</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 删除本地tag</span></span><br><span class="line">git tag -d &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 删除远端tag</span></span><br><span class="line">git push --delete &lt;repo-name&gt; &lt;tag-name&gt;</span><br><span class="line">or </span><br><span class="line">git push &lt;repo-name&gt; :refs/tags/&lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### e.g.: git push --delete origin tag-r0</span></span><br><span class="line"><span class="comment">### e.g.: git push origin :refs/tags/tag-r0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看tag"><a href="#查看tag" class="headerlink" title="查看tag"></a>查看tag</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 查看所有的tag</span></span><br><span class="line">git tag</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看单个tag</span></span><br><span class="line">git tag -l &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">### 查看一个tag的具体信息</span></span><br><span class="line">git show &lt;tag-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="推送tag到远程"><a href="#推送tag到远程" class="headerlink" title="推送tag到远程"></a>推送tag到远程</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## push single tag</span></span><br><span class="line">git push &lt;remote-name&gt; &lt;tag-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## push all tags (not recommended)</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+
+<h3 id="撤销工作目录所有的更改（包括新创建的文件）"><a href="#撤销工作目录所有的更改（包括新创建的文件）" class="headerlink" title="撤销工作目录所有的更改（包括新创建的文件）"></a>撤销工作目录所有的更改（包括新创建的文件）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard <span class="comment"># removes staged and working directory changes</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## !! be very careful with these !!</span></span><br><span class="line"><span class="comment">## you may end up deleting what you don't want to</span></span><br><span class="line"><span class="comment">## read comments and manual.</span></span><br><span class="line">git clean -f -d <span class="comment"># remove untracked</span></span><br><span class="line">git clean -f -x -d <span class="comment"># CAUTION: as above but removes ignored files like config.</span></span><br><span class="line">git clean -fxd :/ <span class="comment"># CAUTION: as above, but cleans untracked and ignored files through the entire repo (without :/, the operation affects only the current directory)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"><a href="#git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）" class="headerlink" title="git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）"></a>git仓库存储账号密码，不用每次都输入账号密码（针对https协议的仓库地址）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git config credential.helper store</span><br><span class="line">$ git push https://github.com/owner/repo.git</span><br><span class="line"></span><br><span class="line">Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: &lt;USERNAME&gt;</span><br><span class="line">Password <span class="keyword">for</span> <span class="string">'https://USERNAME@github.com'</span>: &lt;PASSWORD&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">## 执行完上面的命令之后，以后所有的push都不再需要提交代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 如果想让此功能有个时间限制，可以这样</span></span><br><span class="line"></span><br><span class="line">git config --global credential.helper <span class="string">'cache --timeout 7200'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 7200秒后失效，push需要重新输入账号密码</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://haina.xgeeklab.com/2019/09/10/vue-asyn-component/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -609,7 +760,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -626,7 +777,9 @@
         
           
         
-        <span class="site-state-item-count">1</span>
+          
+        
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -655,7 +808,9 @@
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -768,6 +923,8 @@
 
 
   
+    
+      
     
       
     
