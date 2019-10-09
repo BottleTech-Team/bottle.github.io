@@ -1,11 +1,16 @@
----
+------
 title: 如何用Chrome调试微信web页面
+author: zayfen
+date: undefined
 tags: 
-	- wechat
-	- chrome
-	- debug 
-category: web
----
+ - wechat
+ - chrome
+ - debug
+archives: 
+ - web
+categories: 
+ - web
+------
 > 作者： 张云峰
 
 ## 如何用Chrome调试微信web页面
