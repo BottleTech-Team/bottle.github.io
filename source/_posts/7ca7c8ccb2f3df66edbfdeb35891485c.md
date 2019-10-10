@@ -1,7 +1,7 @@
 ------
 title: 解决JPEG图片横着显示的问题
 author: zayfen
-date: 2019/10/10
+date: undefined
 tags: 
  - canvas
  - jpeg
@@ -30,9 +30,10 @@ categories:
 因为 JPEG的 **Orientation** 属性被忽略了，那么当检测到图片Orientation的值表示需要旋转的时候，我们就主动将JPEEG图片旋转，并且改正或者去掉新图片的**Orientation** 字段。
 
 ```javascript
-
+// 使用exif-js 这个库去获取jpeg图片的EXIF元数据 (https://github.com/exif-js/exif-js)
 // 旋转图片的工具,(旋转之后的图片的EXIF data被移除)
 
+ import * as EXIF from 'exif-js'  // npm install exif-js
  function fileToBuffer (file) {
       // 读取图片数据
       return new Promise(function (resolve, reject) {
