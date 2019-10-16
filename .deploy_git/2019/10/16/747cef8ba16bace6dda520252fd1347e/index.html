@@ -66,20 +66,21 @@
   };
 </script>
 
-  <meta name="description" content="在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientationorientation值有四个   up    不需要旋转 down  旋转180度 left  旋转270度 right 旋转90度  小程序中处理图片旋转条件  需要在wxml中添">
+  <meta name="description" content="在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientationorientation值有四个  up    不需要旋转 down  旋转180度 left  旋转270度 right 旋转90度  小程序中处理图片旋转条件  需要在wxml中添加">
 <meta name="keywords" content="小程序,canvas,图片旋转">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小程序中解决图片旋转问题">
 <meta property="og:url" content="https://haina.xgeeklab.com/2019/10/16/747cef8ba16bace6dda520252fd1347e/index.html">
 <meta property="og:site_name" content="BottleTech.Team">
-<meta property="og:description" content="在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientationorientation值有四个   up    不需要旋转 down  旋转180度 left  旋转270度 right 旋转90度  小程序中处理图片旋转条件  需要在wxml中添">
+<meta property="og:description" content="在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientationorientation值有四个  up    不需要旋转 down  旋转180度 left  旋转270度 right 旋转90度  小程序中处理图片旋转条件  需要在wxml中添加">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://res.cloudinary.com/dazyprrpl/image/upload/v1571231664/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191016211409_wvxen1.png">
 <meta property="og:image" content="https://res.cloudinary.com/dazyprrpl/image/upload/v1571231035/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191016202155_q8crda.png">
-<meta property="og:updated_time" content="2019-10-16T13:09:24.321Z">
+<meta property="og:updated_time" content="2019-10-16T13:15:15.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序中解决图片旋转问题">
-<meta name="twitter:description" content="在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientationorientation值有四个   up    不需要旋转 down  旋转180度 left  旋转270度 right 旋转90度  小程序中处理图片旋转条件  需要在wxml中添">
-<meta name="twitter:image" content="https://res.cloudinary.com/dazyprrpl/image/upload/v1571231035/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191016202155_q8crda.png">
+<meta name="twitter:description" content="在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientationorientation值有四个  up    不需要旋转 down  旋转180度 left  旋转270度 right 旋转90度  小程序中处理图片旋转条件  需要在wxml中添加">
+<meta name="twitter:image" content="https://res.cloudinary.com/dazyprrpl/image/upload/v1571231664/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191016211409_wvxen1.png">
   <link rel="alternate" href="/atom.xml" title="BottleTech.Team" type="application/atom+xml">
   <link rel="canonical" href="https://haina.xgeeklab.com/2019/10/16/747cef8ba16bace6dda520252fd1347e/">
 
@@ -318,12 +319,8 @@
                 
               
 
-              <time title="创建时间：2019-10-16 00:00:00 / 修改时间：21:09:24" itemprop="dateCreated datePublished" datetime="2019-10-16T00:00:00+08:00">2019-10-16</time>
+              <time title="创建时间：2019-10-16 21:15:15" itemprop="dateCreated datePublished" datetime="2019-10-16T21:15:15+08:00">2019-10-16</time>
             </span>
-          
-            
-
-            
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -370,7 +367,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，<br>小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientation<br>orientation值有四个 </p>
+        <p>在一些相机设备中因手持方向的原因导致图片会有一个旋转角度，在图片加载后旋转角度被忽略了，导致图片看过去是旋转的，<br>小程序中不需要借助任何工具获取图片信息，通过wx.getImageInfo()获取orientation<br>orientation值有四个<br><img src="https://res.cloudinary.com/dazyprrpl/image/upload/v1571231664/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191016211409_wvxen1.png" alt="image"></p>
 <ol>
 <li>up    不需要旋转</li>
 <li>down  旋转180度</li>
@@ -433,8 +430,8 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2019/10/11/7ca7c8ccb2f3df66edbfdeb35891485c/" rel="next" title="解决JPEG图片横着显示的问题">
-                <i class="fa fa-chevron-left"></i> 解决JPEG图片横着显示的问题
+              <a href="/2019/10/16/f03d76023fa3812362fb612b07434bdb/" rel="next" title="解决图片在浏览器中旋转问题">
+                <i class="fa fa-chevron-left"></i> 解决图片在浏览器中旋转问题
               </a>
             
           </div>
@@ -442,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/10/16/affcba87eb68badaf0269c3cb8dd509d/" rel="prev" title="web移动端支付">
-                web移动端支付 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
     </footer>
