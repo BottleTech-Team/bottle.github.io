@@ -104,7 +104,8 @@ categories:
             let imageWidth = image.width * rate
             let imageHeight = image.height * rate
             if (rotationDegree === 90 || rotationDegree === 270) {
-              canvas.width = canvas.height =  Math.max(imageWidth, imageHeight)
+              canvas.width = imageHeight
+              canvas.height = imageWidth
             } else {
               canvas.width = image.width
               canvas.height = image.height
@@ -142,7 +143,7 @@ categories:
 
 
 **例子效果：**
-![旋转图片的例子](https://res.cloudinary.com/zayfen/image/upload/v1570701062/img/xfol8p1pqxdt4srgpsi2.png)
+![旋转图片的例子](https://res.cloudinary.com/zayfen/image/upload/v1571232577/img/y8zxcjibljhul5nr1cab.png)
 
 
 
