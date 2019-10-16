@@ -31,12 +31,12 @@ if (/MicroMessenger/.test(window.navigator.userAgent)) {
 由于微信支付需要用到用户的openid，进行支付前需要获取用户的openid。用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。
 ```
 location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${url}&response_type=code&scope=snsapi_base&state=drugstore#wechat_redirect`;
-// appid	必填	公众号的唯一标识
-// redirect_uri	必填	"授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理"
-// response_type	必填	返回类型，请填写code
-// scope	必填	"应用授权作用域，snsapi_base （不弹出授权页面，直接跳转，只能获取用户openid），snsapi_userinfo （弹出授权页面，可通过openid拿到昵称、性别、所在地。并且， 即使在未关注的情况下，只要用户授权，也能获取其信息 ）"
+// appid	必填参数	公众号的唯一标识
+// redirect_uri	必填参数	"授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理"
+// response_type	必填参数	返回类型，请填写code
+// scope	必填参数	"应用授权作用域，snsapi_base （不弹出授权页面，直接跳转，只能获取用户openid），snsapi_userinfo （弹出授权页面，可通过openid拿到昵称、性别、所在地。并且， 即使在未关注的情况下，只要用户授权，也能获取其信息 ）"
 // state	可选参数	重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节
-// #wechat_redirect	是	无论直接打开还是做页面302重定向时候，必须带此参数
+// #wechat_redirect	必填参数	无论直接打开还是做页面302重定向时候，必须带此参数
 ```
 
 网页授权获取用户openid接口文档https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html
