@@ -155,7 +155,7 @@ menu:
   categories: /categories/ || th
   archives: /archives/ || archive
   about: /about/ || user
-  schedule: /schedule/ || calendar
+  # schedule: /schedule/ || calendar
   sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
 

@@ -85,7 +85,7 @@ menu:
     tags: /tags/ 
     categories: /categories/ 
     archives: /archives/
-    schedule: /schedule/
+    # schedule: /schedule/
     sitemap: /sitemap.xml 
 
 # Deployment
