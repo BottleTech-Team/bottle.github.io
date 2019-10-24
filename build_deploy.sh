@@ -1,4 +1,5 @@
 cp themes/next/_config.yml theme_config/next/_config.yml
+hexo clean
 hexo g && hexo d
 
 git add .
