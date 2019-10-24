@@ -76,6 +76,7 @@ B                {%- endif %}
                 <i class="fa fa-calendar-o"></i>
               </span>
               {%- if theme.post_meta.item_text %}
+                <span class="post-meta-item-text">{{ theme.author || 'haina.xgeeklab.com' }}</span>
                 <span class="post-meta-item-text">{{ __('post.posted') }}</span>
               {%- endif %}
 
