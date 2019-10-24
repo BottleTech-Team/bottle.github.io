@@ -286,7 +286,7 @@ chat:
 scroll_to_more: true
 
 # Automatically saving scroll position on each post / page in cookies.
-save_scroll: false
+save_scroll: true 
 
 # Automatically excerpt description in homepage as preamble text.
 excerpt_description: true
@@ -344,7 +344,7 @@ reward:
 # Related popular posts
 # Dependencies: https://github.com/tea3/hexo-related-popular-posts
 related_posts:
-  enable: false
+  enable: true 
   title: # Custom header, leave empty to use the default one
   display_in_home: false
   params:
