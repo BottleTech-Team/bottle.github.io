@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://haina.xgeeklab.com/"/>
-  <updated>2019-10-18T11:46:51.117Z</updated>
+  <updated>2019-10-28T09:22:05.042Z</updated>
   <id>https://haina.xgeeklab.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx Location Match (Repost)</title>
+    <link href="https://haina.xgeeklab.com/2019/10/28/e041095b802015a8653954e2100177ad/"/>
+    <id>https://haina.xgeeklab.com/2019/10/28/e041095b802015a8653954e2100177ad/</id>
+    <published>2019-10-27T16:00:00.000Z</published>
+    <updated>2019-10-28T09:22:05.042Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="nginx-location-match-visible"><a href="#nginx-location-match-visible" class="headerlink" title="nginx location match visible"></a>nginx location match visible</h2><p>*<em>Github项目地址： *</em><br><a href="https://github.com/detailyang/nginx-location-match-visible" target="_blank" rel="noopener">https://github.com/detailyang/nginx-location-match-visible</a></p><h1 id="Purpose"><a href="#Purpose" class="headerlink" title="Purpose"></a>Purpose</h1><p>This project aims to help guys understand how does nginx location match work. Wish you can learn something from this project :grin:</p><p><img src="https://raw.githubusercontent.com/detailyang/nginx-location-match-visible/master/docs/images/nginx-location-visible.gif" alt="nginx location visible"></p><h1 id="Rough"><a href="#Rough" class="headerlink" title="Rough"></a>Rough</h1><p>In <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#location" target="_blank" rel="noopener">Nginx Website</a>, it include these docs as the following:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Syntax:location [ = | ~ | ~* | ^~ ] uri &#123; ... &#125;</span><br><span class="line">location @name &#123; ... &#125;</span><br><span class="line">Default:—</span><br><span class="line">Context:server, location</span><br></pre></td></tr></table></figure><blockquote></blockquote><p>A location can either be defined by a prefix string, or by a regular expression. Regular expressions are specified with the preceding “<del>*” modifier (for case-insensitive matching), or the “</del>” modifier (for case-sensitive matching). To find location matching a given request, nginx first checks locations defined using the prefix strings (prefix locations). Among them, the location with the longest matching prefix is selected and remembered. Then regular expressions are checked, in the order of their appearance in the configuration file. The search of regular expressions terminates on the first match, and the corresponding configuration is used. If no match with a regular expression is found then the configuration of the prefix location remembered earlier is used.</p><blockquote></blockquote><p>location blocks can be nested, with some exceptions mentioned below.</p><blockquote></blockquote><p>For case-insensitive operating systems such as Mac OS X and Cygwin, matching with prefix strings ignores a case (0.7.7). However, comparison is limited to one-byte locales.</p><blockquote></blockquote><p>Regular expressions can contain captures (0.7.40) that can later be used in other directives.</p><blockquote></blockquote><p>If the longest matching prefix location has the “^~” modifier then regular expressions are not checked.</p><blockquote></blockquote><p>Also, using the “=” modifier it is possible to define an exact match of URI and location. If an exact match is found, the search terminates. For example, if a “/” request happens frequently, defining “location = /” will speed up the processing of these requests, as search terminates right after the first comparison. Such a location cannot obviously contain nested locations.</p><p>Let’s explain something about this:</p><ol><li>the exact match is the best priority</li><li>the prefix match is the second priority, but there are two type prefix match like <code>^~</code> and <code>/</code>, if you are ^~, nginx will skip regular match else it will continue to match all the regular match.</li></ol><p>a little fake code as the following:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">match</span><span class="params">(uri)</span>:</span></span><br><span class="line">  rv = NULL</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> uri <span class="keyword">in</span> exact_match:</span><br><span class="line">    <span class="keyword">return</span> exact_match[uri]</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> uri <span class="keyword">in</span> prefix_match:</span><br><span class="line">    <span class="keyword">if</span> prefix_match[uri] <span class="keyword">is</span> <span class="string">'^~'</span>:</span><br><span class="line">      <span class="keyword">return</span> prefix_match[uri]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      rv = prefix_match[uri]</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">if</span> uri <span class="keyword">in</span> regex_match:</span><br><span class="line">    <span class="keyword">return</span> regex_match[uri]</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> rv</span><br></pre></td></tr></table></figure><p>Let’s illustrate the above by an example:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">location = / &#123;</span><br><span class="line">    [ configuration A ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">    [ configuration B ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /documents/ &#123;</span><br><span class="line">    [ configuration C ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ^~ /images/ &#123;</span><br><span class="line">    [ configuration D ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~* \.(gif|jpg|jpeg)$ &#123;</span><br><span class="line">    [ configuration E ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>if we are requesting “/index.html”, it will match <code>configureation B</code>.</li><li>if we are requesting “/1.jpg”, it will find <code>configuration B</code> at first, then regular match <code>configuration E</code> finally.</li><li>if we are requesting “/images/xxx”, it will match <code>configuration D</code>, but never match regular location becasuse of ^~</li></ul><h1 id="Detail"><a href="#Detail" class="headerlink" title="Detail"></a>Detail</h1><p>Let’s talk about the something about nginx location data struct when nginx match location.</p><p>Firstly Nginx will sort the location list by the order </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extra_match(alpha order)-&gt;prefix(alpha order)-&gt;regular(order write by conf)-&gt;named(alpha order)-&gt;noname(order write by conf)</span><br></pre></td></tr></table></figure><p>Then Nginx will move named and noname location from the list, because normal request will not hit these location directly.<br>And Nginx will split regular location to signle list like the following.<br>Finally Nginx transform the location list only have match and prefix to a ternary tree like the following.</p><p><img src="https://raw.githubusercontent.com/detailyang/nginx-location-match-visible/master/docs/images/nginxds.png" alt="nginx location tree and regular location list"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;nginx-location-match-visible&quot;&gt;&lt;a href=&quot;#nginx-location-match-visible&quot; class=&quot;headerlink&quot; title=&quot;nginx location match visible&quot;&gt;&lt;/a&gt;ng
+      
+    
+    </summary>
+    
+      <category term="web" scheme="https://haina.xgeeklab.com/categories/web/"/>
+    
+    
+      <category term="nginx" scheme="https://haina.xgeeklab.com/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>优化 JavaScript 执行(Repost)</title>
@@ -98,11 +123,11 @@
       <category term="小程序" scheme="https://haina.xgeeklab.com/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
     
-      <category term="小程序" scheme="https://haina.xgeeklab.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
       <category term="canvas" scheme="https://haina.xgeeklab.com/tags/canvas/"/>
     
       <category term="图片旋转" scheme="https://haina.xgeeklab.com/tags/%E5%9B%BE%E7%89%87%E6%97%8B%E8%BD%AC/"/>
+    
+      <category term="小程序" scheme="https://haina.xgeeklab.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -245,9 +270,9 @@
       <category term="web" scheme="https://haina.xgeeklab.com/categories/web/"/>
     
     
-      <category term="web" scheme="https://haina.xgeeklab.com/tags/web/"/>
-    
       <category term="vue" scheme="https://haina.xgeeklab.com/tags/vue/"/>
+    
+      <category term="web" scheme="https://haina.xgeeklab.com/tags/web/"/>
     
       <category term="async" scheme="https://haina.xgeeklab.com/tags/async/"/>
     
